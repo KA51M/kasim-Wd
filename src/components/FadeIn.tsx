@@ -1,6 +1,5 @@
 import type { ElementType } from 'react';
-import { motion } from 'framer-motion';
-import type { HTMLMotionProps } from 'framer-motion';
+import { motion, type HTMLMotionProps } from 'framer-motion';
 
 interface FadeInProps extends Omit<HTMLMotionProps<"div">, "as"> {
   as?: ElementType;
@@ -12,7 +11,6 @@ interface FadeInProps extends Omit<HTMLMotionProps<"div">, "as"> {
 }
 
 export const FadeIn = ({
-  as = 'div',
   delay = 0,
   duration = 0.7,
   x = 0,
@@ -20,10 +18,8 @@ export const FadeIn = ({
   children,
   ...props
 }: FadeInProps) => {
-  const Component = motion.create(as as any);
-
   return (
-    <Component
+    <motion.div
       initial={{ opacity: 0, x, y }}
       whileInView={{ opacity: 1, x: 0, y: 0 }}
       viewport={{ once: true, margin: "50px", amount: 0 }}
@@ -31,6 +27,6 @@ export const FadeIn = ({
       {...props}
     >
       {children}
-    </Component>
+    </motion.div>
   );
 };
