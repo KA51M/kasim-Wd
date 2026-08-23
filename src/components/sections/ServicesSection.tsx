@@ -42,72 +42,6 @@ const projects: ProjectItem[] = [
   }
 ];
 
-const TechStackBadges = ({ liveUrl, isMobile }: { liveUrl?: string; isMobile?: boolean }) => (
-  <div className="flex items-center">
-    {/* Overlapping Tech Badges with black background and white border */}
-    <div className="flex items-center">
-      {/* React Badge */}
-      <div 
-        className={`${isMobile ? 'w-8 h-8' : 'w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12'} rounded-full bg-black border-2 border-white flex items-center justify-center shadow-md relative z-10 hover:scale-110 hover:z-30 transition-transform duration-200`}
-        title="React"
-      >
-        <svg className={`${isMobile ? 'w-4.5 h-4.5' : 'w-5.5 h-5.5 sm:w-6 sm:h-6 md:w-7 md:h-7'}`} viewBox="-11.5 -10.23174 23 20.46348" fill="none">
-          <circle cx="0" cy="0" r="2.05" fill="#61DAFB"/>
-          <g stroke="#61DAFB" strokeWidth="1" fill="none">
-            <ellipse rx="11" ry="4.2"/>
-            <ellipse rx="11" ry="4.2" transform="rotate(60)"/>
-            <ellipse rx="11" ry="4.2" transform="rotate(120)"/>
-          </g>
-        </svg>
-      </div>
-
-      {/* JS Badge */}
-      <div 
-        className={`${isMobile ? 'w-8 h-8 -ml-2' : 'w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 -ml-3 sm:-ml-3.5'} rounded-full bg-black border-2 border-white flex items-center justify-center shadow-md relative z-20 hover:scale-110 hover:z-30 transition-transform duration-200`}
-        title="JavaScript"
-      >
-        <div className={`${isMobile ? 'w-4 h-4' : 'w-5 h-5 sm:w-5.5 sm:h-5.5 md:w-6 md:h-6'} rounded-xs overflow-hidden flex items-center justify-center`}>
-          <svg className="w-full h-full" viewBox="0 0 630 630">
-            <rect width="630" height="630" fill="#F7DF1E"/>
-            <path d="M170.4 461.3c13.7 8.3 31.4 14.7 50.4 14.7 28.7 0 45.4-14.1 45.4-34.9 0-20.2-12.7-30.8-37.7-41.5l-13-5.5c-37.1-15.7-61.5-35.7-61.5-73.4 0-41.1 31.8-72.4 81.6-72.4 29.3 0 50.8 7.3 64.9 15.6l-15.6 37.8c-10.8-6.4-27.7-12.7-48.7-12.7-24 0-38.6 11.8-38.6 28.8 0 18.6 12.2 27.4 34.9 37.2l13 5.5c42.1 18.1 66.8 37.2 66.8 77.8 0 44.5-34.7 75.3-90.9 75.3-33.8 0-61.2-8.8-76.3-17.6zm192.8-19.1c11.7 6.4 26.9 10.8 42.6 10.8 24 0 38.6-11.3 38.6-30.8V254h46.9v169.3c0 46.5-27.4 72.4-78.2 72.4-27.4 0-51.8-8.8-65-17.6z" fill="#000000"/>
-          </svg>
-        </div>
-      </div>
-
-      {/* HTML5 Badge */}
-      <div 
-        className={`${isMobile ? 'w-8 h-8 -ml-2' : 'w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 -ml-3 sm:-ml-3.5'} rounded-full bg-black border-2 border-white flex items-center justify-center shadow-md relative z-30 hover:scale-110 hover:z-30 transition-transform duration-200`}
-        title="HTML5"
-      >
-        <svg className={`${isMobile ? 'w-3.5 h-3.5' : 'w-4.5 h-4.5 sm:w-5 sm:h-5 md:w-5.5 md:h-5.5'}`} viewBox="0 0 512 512" fill="none">
-          <path fill="#E44D26" d="M107.6 466.8L67.1 12.6h377.8l-40.5 454.1L256 500z"/>
-          <path fill="#F16529" d="M256 463.3l119.8-33.2 34.6-387.8H256z"/>
-          <path fill="#EBEBEB" d="M256 207.2h-62.4l-4.3-48.4H256V111H136.2l12.8 144.6H256zm0 148.6l-.6.2-52.2-14.1-3.3-37.4h-48.4l6.6 74.4 97.9 27.2z"/>
-          <path fill="#FFFFFF" d="M256 207.2h62.4l-5.9 66-56.5 15.3v50.4l98.9-27.4.7-7.9 11.2-125.6 1.4-15.2H256zm0-96.2v47.8h115.5l4.3-47.8z"/>
-        </svg>
-      </div>
-    </div>
-
-    {/* Circular Arrow Button */}
-    <a
-      href={liveUrl || "#"}
-      className={`${isMobile ? 'w-8 h-8 ml-2' : 'w-7 h-7 sm:w-8 sm:h-8 md:w-8.5 md:h-8.5 ml-2.5 sm:ml-3'} rounded-full bg-white border-2 border-black flex items-center justify-center shadow-xs hover:shadow-md hover:scale-110 active:scale-95 transition-all duration-200 cursor-pointer group/circle`}
-      aria-label="View Project"
-    >
-      <svg 
-        className={`${isMobile ? 'w-3.5 h-3.5' : 'w-3.5 h-3.5 sm:w-4 sm:h-4'} text-black stroke-[3.5] group-hover/circle:translate-x-0.5 transition-transform duration-200`} 
-        viewBox="0 0 24 24" 
-        fill="none" 
-        stroke="currentColor" 
-        strokeLinecap="round" 
-        strokeLinejoin="round"
-      >
-        <polyline points="9 18 15 12 9 6"></polyline>
-      </svg>
-    </a>
-  </div>
-);
-
 export const ServicesSection = () => {
   const [showAll, setShowAll] = useState(false);
 
@@ -164,24 +98,20 @@ export const ServicesSection = () => {
                 {project.desc}
               </p>
 
-              {/* Row 4: Bottom bar with Tech Stack on Left and Buttons on Right */}
-              <div className="flex items-center justify-between gap-2 w-full pt-1">
-                <TechStackBadges liveUrl={project.liveUrl} isMobile />
-
-                <div className="flex items-center gap-3 flex-shrink-0">
-                  <a
-                    href={project.liveUrl || "#"}
-                    className="inline-flex items-center justify-center px-3.5 py-2 rounded-md bg-[#0C0C0C] text-white text-[11px] font-bold uppercase tracking-wider hover:bg-neutral-800 transition-colors shadow-xs"
-                  >
-                    VIEW LIVE PROJECT
-                  </a>
-                  <button
-                    type="button"
-                    className="inline-flex items-center justify-center text-[#0C0C0C] text-[11px] font-bold uppercase tracking-wider hover:opacity-70 transition-opacity cursor-pointer"
-                  >
-                    LEARN MORE
-                  </button>
-                </div>
+              {/* Row 4: 2 Buttons on the Left Side */}
+              <div className="flex items-center gap-3 w-full pt-1">
+                <a
+                  href={project.liveUrl || "#"}
+                  className="inline-flex items-center justify-center px-3.5 py-2 rounded-md bg-[#0C0C0C] text-white text-[11px] font-bold uppercase tracking-wider hover:bg-neutral-800 transition-colors shadow-xs"
+                >
+                  VIEW LIVE PROJECT
+                </a>
+                <button
+                  type="button"
+                  className="inline-flex items-center justify-center text-[#0C0C0C] text-[11px] font-bold uppercase tracking-wider hover:opacity-70 transition-opacity cursor-pointer"
+                >
+                  LEARN MORE
+                </button>
               </div>
             </div>
 
@@ -235,26 +165,22 @@ export const ServicesSection = () => {
                   {project.desc}
                 </p>
 
-                {/* Bottom Row: Widget on Left, Action Buttons on Right */}
-                <div className="flex flex-wrap items-center justify-between gap-3 sm:gap-4 mt-4 sm:mt-5 pt-1">
-                  <TechStackBadges liveUrl={project.liveUrl} />
+                {/* Bottom Row: 2 Action Buttons on Left */}
+                <div className="flex items-center gap-3 sm:gap-4 mt-4 sm:mt-5 pt-1">
+                  <a
+                    href={project.liveUrl || "#"}
+                    className="group/btn inline-flex items-center gap-1.5 sm:gap-2 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-lg sm:rounded-xl bg-[#0C0C0C] text-white text-xs sm:text-sm font-medium tracking-wide hover:bg-neutral-800 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] cursor-pointer shadow-xs"
+                  >
+                    <span>View Live Project</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform duration-200" />
+                  </a>
 
-                  <div className="flex flex-wrap items-center gap-3 sm:gap-4">
-                    <a
-                      href={project.liveUrl || "#"}
-                      className="group/btn inline-flex items-center gap-1.5 sm:gap-2 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-lg sm:rounded-xl bg-[#0C0C0C] text-white text-xs sm:text-sm font-medium tracking-wide hover:bg-neutral-800 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] cursor-pointer shadow-xs"
-                    >
-                      <span>View Live Project</span>
-                      <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform duration-200" />
-                    </a>
-
-                    <button
-                      type="button"
-                      className="inline-flex items-center px-1 py-1 text-[#0C0C0C] text-xs sm:text-sm font-medium uppercase tracking-wider hover:opacity-70 transition-opacity cursor-pointer"
-                    >
-                      Learn More
-                    </button>
-                  </div>
+                  <button
+                    type="button"
+                    className="inline-flex items-center px-1 py-1 text-[#0C0C0C] text-xs sm:text-sm font-medium uppercase tracking-wider hover:opacity-70 transition-opacity cursor-pointer"
+                  >
+                    Learn More
+                  </button>
                 </div>
               </div>
             </div>
@@ -307,24 +233,20 @@ export const ServicesSection = () => {
                       {project.desc}
                     </p>
 
-                    {/* Row 4: Bottom bar with Tech Stack on Left and Buttons on Right */}
-                    <div className="flex items-center justify-between gap-2 w-full pt-1">
-                      <TechStackBadges liveUrl={project.liveUrl} isMobile />
-
-                      <div className="flex items-center gap-3 flex-shrink-0">
-                        <a
-                          href={project.liveUrl || "#"}
-                          className="inline-flex items-center justify-center px-3.5 py-2 rounded-md bg-[#0C0C0C] text-white text-[11px] font-bold uppercase tracking-wider hover:bg-neutral-800 transition-colors shadow-xs"
-                        >
-                          VIEW LIVE PROJECT
-                        </a>
-                        <button
-                          type="button"
-                          className="inline-flex items-center justify-center text-[#0C0C0C] text-[11px] font-bold uppercase tracking-wider hover:opacity-70 transition-opacity cursor-pointer"
-                        >
-                          LEARN MORE
-                        </button>
-                      </div>
+                    {/* Row 4: 2 Buttons on the Left Side */}
+                    <div className="flex items-center gap-3 w-full pt-1">
+                      <a
+                        href={project.liveUrl || "#"}
+                        className="inline-flex items-center justify-center px-3.5 py-2 rounded-md bg-[#0C0C0C] text-white text-[11px] font-bold uppercase tracking-wider hover:bg-neutral-800 transition-colors shadow-xs"
+                      >
+                        VIEW LIVE PROJECT
+                      </a>
+                      <button
+                        type="button"
+                        className="inline-flex items-center justify-center text-[#0C0C0C] text-[11px] font-bold uppercase tracking-wider hover:opacity-70 transition-opacity cursor-pointer"
+                      >
+                        LEARN MORE
+                      </button>
                     </div>
                   </div>
 
@@ -378,26 +300,22 @@ export const ServicesSection = () => {
                         {project.desc}
                       </p>
 
-                      {/* Bottom Row: Widget on Left, Action Buttons on Right */}
-                      <div className="flex flex-wrap items-center justify-between gap-3 sm:gap-4 mt-4 sm:mt-5 pt-1">
-                        <TechStackBadges liveUrl={project.liveUrl} />
+                      {/* Bottom Row: 2 Action Buttons on Left */}
+                      <div className="flex items-center gap-3 sm:gap-4 mt-4 sm:mt-5 pt-1">
+                        <a
+                          href={project.liveUrl || "#"}
+                          className="group/btn inline-flex items-center gap-1.5 sm:gap-2 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-lg sm:rounded-xl bg-[#0C0C0C] text-white text-xs sm:text-sm font-medium tracking-wide hover:bg-neutral-800 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] cursor-pointer shadow-xs"
+                        >
+                          <span>View Live Project</span>
+                          <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform duration-200" />
+                        </a>
 
-                        <div className="flex flex-wrap items-center gap-3 sm:gap-4">
-                          <a
-                            href={project.liveUrl || "#"}
-                            className="group/btn inline-flex items-center gap-1.5 sm:gap-2 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-lg sm:rounded-xl bg-[#0C0C0C] text-white text-xs sm:text-sm font-medium tracking-wide hover:bg-neutral-800 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] cursor-pointer shadow-xs"
-                          >
-                            <span>View Live Project</span>
-                            <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform duration-200" />
-                          </a>
-
-                          <button
-                            type="button"
-                            className="inline-flex items-center px-1 py-1 text-[#0C0C0C] text-xs sm:text-sm font-medium uppercase tracking-wider hover:opacity-70 transition-opacity cursor-pointer"
-                          >
-                            Learn More
-                          </button>
-                        </div>
+                        <button
+                          type="button"
+                          className="inline-flex items-center px-1 py-1 text-[#0C0C0C] text-xs sm:text-sm font-medium uppercase tracking-wider hover:opacity-70 transition-opacity cursor-pointer"
+                        >
+                          Learn More
+                        </button>
                       </div>
                     </div>
                   </div>
