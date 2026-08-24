@@ -120,9 +120,9 @@ export const AboutSection = () => {
             I specialize in crafting high-performing, scalable digital experiences that seamlessly blend clean architecture with intuitive, engaging design.
           </p>
 
-          {/* Desktop Only CTAs */}
-          <div className="hidden lg:flex mt-7 sm:mt-9 w-full">
-            <CTAButtons className="justify-start" />
+          {/* CTA Buttons: Center-aligned on mobile, Left-aligned on desktop */}
+          <div className="flex justify-center lg:justify-start items-center w-full mt-7 sm:mt-9">
+            <CTAButtons className="justify-center lg:justify-start" />
           </div>
         </FadeIn>
 
@@ -150,11 +150,6 @@ export const AboutSection = () => {
                 <div className="w-1.5 h-1.5 rounded-full bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-200 mr-1" />
               </div>
             ))}
-          </div>
-
-          {/* Mobile Only Centered CTAs Below 4 Points */}
-          <div className="flex lg:hidden justify-center items-center w-full mt-10">
-            <CTAButtons className="justify-center" />
           </div>
         </FadeIn>
 
