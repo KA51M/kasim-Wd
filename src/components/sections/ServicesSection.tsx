@@ -199,7 +199,7 @@ export const ServicesSection = () => {
   const hiddenProjects = projects.slice(3);
 
   return (
-    <section id="services" className="bg-white rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] px-5 sm:px-8 md:px-10 py-20 sm:py-24 md:py-32 w-full relative z-10">
+    <section id="projects" className="bg-white rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] px-5 sm:px-8 md:px-10 py-20 sm:py-24 md:py-32 w-full relative z-10">
       <FadeIn delay={0.1} y={40} className="w-full text-center mb-16 sm:mb-20 md:mb-28">
         <h2 
           className="text-[#0C0C0C] font-black uppercase leading-none tracking-tight"

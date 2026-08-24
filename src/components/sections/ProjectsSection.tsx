@@ -1,142 +1,107 @@
-import { useRef } from 'react';
-import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
-import { LiveProjectButton } from '../LiveProjectButton';
+import { ArrowRight } from 'lucide-react';
 import { FadeIn } from '../FadeIn';
 
-const projects = [
+interface ServiceItem {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+}
+
+const servicesList: ServiceItem[] = [
   {
-    num: "01",
-    client: "Client",
-    name: "Nextlevel Studio",
-    images: {
-      col1_1: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055344_5eff02e0-87a5-41ce-b64f-eb08da8f33db.png&w=1280&q=85",
-      col1_2: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055431_11d841fd-8b41-46a5-82e4-b04f2407a7d8.png&w=1280&q=85",
-      col2: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055451_e317bf2d-28d4-48cc-86b0-6f72f25b6327.png&w=1280&q=85"
-    }
+    icon: (
+      <svg className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 stroke-current fill-none stroke-[1.8]" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
+        <polyline points="7 8 3 12 7 16" />
+        <polyline points="17 8 21 12 17 16" />
+        <line x1="14" y1="4" x2="10" y2="20" />
+      </svg>
+    ),
+    title: "FULL STACK DEVELOPMENT",
+    description: "Building fast, scalable, and responsive web applications with modern frontend and backend technologies."
   },
   {
-    num: "02",
-    client: "Personal",
-    name: "Aura Brand Identity",
-    images: {
-      col1_1: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055654_911201c5-36d9-4bc6-bac7-331adfce159f.png&w=1280&q=85",
-      col1_2: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055723_5ceda0b8-d9c2-4665-b2e3-83ba19ba76d1.png&w=1280&q=85",
-      col2: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055753_adc5dcbd-a8e6-49c0-b43a-9b030d835cea.png&w=1280&q=85"
-    }
+    icon: (
+      <svg className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 stroke-current fill-none stroke-[1.8]" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
+        <path d="m15 5 4 4" />
+      </svg>
+    ),
+    title: "UI/UX WEB DESIGN",
+    description: "Designing clean, modern, and conversion-focused interfaces with smooth user experiences and responsive layouts."
   },
   {
-    num: "03",
-    client: "Client",
-    name: "Solaris Digital",
-    images: {
-      col1_1: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055759_963cfb0b-4bd1-4b0f-9d0a-09bd6cf95b2f.png&w=1280&q=85",
-      col1_2: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_060108_438f781a-9846-4dcc-89ab-c4e6cb830f5b.png&w=1280&q=85",
-      col2: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055818_9d062121-ad7e-46b9-999a-1a6a692ef1ee.png&w=1280&q=85"
-    }
+    icon: (
+      <svg className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 stroke-current fill-none stroke-[1.8]" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
+        <polyline points="22 6 13.5 14.5 8.5 9.5 2 16" />
+        <polyline points="16 6 22 6 22 12" />
+        <rect x="2" y="16" width="3" height="5" rx="0.5" />
+        <rect x="7.5" y="13" width="3" height="8" rx="0.5" />
+        <rect x="13" y="10" width="3" height="11" rx="0.5" />
+      </svg>
+    ),
+    title: "SEO & PERFORMANCE OPTIMIZATION",
+    description: "Optimizing websites for faster loading, better search rankings, smooth animations, and improved overall performance."
+  },
+  {
+    icon: (
+      <svg className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 stroke-current fill-none stroke-[1.8]" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <line x1="2" y1="12" x2="22" y2="12" />
+        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+      </svg>
+    ),
+    title: "BUSINESS WEBSITE SOLUTIONS",
+    description: "Creating professional websites for clinics, restaurants, brands, and local businesses with booking and modern features."
   }
 ];
 
-const ProjectCard = ({ project, i, totalCards, progress }: { project: any, i: number, totalCards: number, progress: MotionValue<number> }) => {
-  const targetScale = 1 - (totalCards - 1 - i) * 0.03;
-  const scale = useTransform(progress, [i * 0.25, 1], [1, targetScale]);
-
-  return (
-    <div 
-      className="sticky w-full flex items-start justify-center"
-      style={{ top: `calc(6rem + ${i * 28}px)` }}
-    >
-      <motion.div 
-        className="w-full rounded-[40px] sm:rounded-[50px] md:rounded-[60px] border-2 border-[#D7E2EA] bg-[#0C0C0C] p-4 sm:p-6 md:p-8 flex flex-col gap-6 sm:gap-8"
-        style={{ 
-          scale,
-          transformOrigin: 'top center'
-        }}
-      >
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-0">
-          <div className="flex items-end gap-4 sm:gap-8">
-            <span 
-              className="text-[#D7E2EA] font-black leading-none"
-              style={{ fontSize: 'clamp(3rem, 10vw, 140px)' }}
-            >
-              {project.num}
-            </span>
-            <div className="pb-2 sm:pb-4">
-              <span className="text-[#D7E2EA]/60 uppercase tracking-widest text-xs sm:text-sm block mb-1">
-                {project.client}
-              </span>
-              <h3 className="text-[#D7E2EA] font-medium uppercase text-xl sm:text-2xl md:text-3xl lg:text-4xl">
-                {project.name}
-              </h3>
-            </div>
-          </div>
-          <div className="pb-2 sm:pb-4 flex-shrink-0">
-            <LiveProjectButton />
-          </div>
-        </div>
-
-        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full mt-2">
-          {/* Left Column - 40% */}
-          <div className="w-full sm:w-[40%] flex flex-col gap-4 sm:gap-6">
-            <img 
-              src={project.images.col1_1} 
-              alt={`${project.name} preview 1`}
-              className="w-full object-cover rounded-[40px] sm:rounded-[50px] md:rounded-[60px]"
-              style={{ height: 'clamp(130px, 16vw, 230px)' }}
-            />
-            <img 
-              src={project.images.col1_2} 
-              alt={`${project.name} preview 2`}
-              className="w-full object-cover rounded-[40px] sm:rounded-[50px] md:rounded-[60px]"
-              style={{ height: 'clamp(160px, 22vw, 340px)' }}
-            />
-          </div>
-          
-          {/* Right Column - 60% */}
-          <div className="w-full sm:w-[60%] flex">
-            <img 
-              src={project.images.col2} 
-              alt={`${project.name} preview 3`}
-              className="w-full object-cover rounded-[40px] sm:rounded-[50px] md:rounded-[60px] h-[300px] sm:h-auto"
-            />
-          </div>
-        </div>
-      </motion.div>
-    </div>
-  );
-};
-
 export const ProjectsSection = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start start', 'end end']
-  });
-
   return (
-    <section ref={containerRef} id="projects" className="bg-[#0C0C0C] rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] -mt-10 sm:-mt-12 md:-mt-14 z-10 relative px-5 sm:px-8 md:px-10 py-20 sm:py-24 md:py-32 w-full">
-      <FadeIn delay={0.1} y={40} className="w-full mb-16 sm:mb-20 md:mb-28 text-center">
+    <section 
+      id="services" 
+      className="bg-[#0C0C0C] rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] -mt-10 sm:-mt-12 md:-mt-14 z-10 relative px-5 sm:px-8 md:px-12 py-20 sm:py-24 md:py-32 w-full"
+    >
+      {/* Simple Clean Heading (No ornaments, no description below) */}
+      <FadeIn delay={0.1} y={40} className="w-full mb-12 sm:mb-16 md:mb-20 text-center">
         <h2 
-          className="hero-heading font-black uppercase leading-none"
+          className="hero-heading font-black uppercase leading-none tracking-tight"
           style={{ fontSize: 'clamp(3rem, 12vw, 160px)' }}
         >
-          Project
+          Services
         </h2>
       </FadeIn>
 
-      <div className="w-full max-w-7xl mx-auto flex flex-col gap-16 md:gap-24">
-        {projects.map((project, i) => (
-          <ProjectCard 
-            key={project.num} 
-            project={project} 
-            i={i} 
-            totalCards={projects.length} 
-            progress={scrollYProgress}
-          />
-        ))}
-        {/* Spacer to allow the last card to stick and overlap completely before section ends */}
-        <div className="h-[50vh] sm:h-[60vh] md:h-[80vh]"></div>
-      </div>
+      {/* Services Table Frame Box */}
+      <FadeIn delay={0.2} y={40} className="w-full max-w-5xl mx-auto">
+        <div className="w-full rounded-2xl sm:rounded-3xl border border-neutral-800/90 bg-[#0C0C0C] overflow-hidden divide-y divide-neutral-800/90 shadow-[0_10px_40px_rgba(0,0,0,0.6)]">
+          {servicesList.map((service) => (
+            <div 
+              key={service.title}
+              className="group flex flex-row items-stretch w-full transition-colors duration-300 hover:bg-white/[0.04] cursor-pointer"
+            >
+              {/* Left Column: Icon */}
+              <div className="w-20 sm:w-28 md:w-36 flex items-center justify-center border-r border-neutral-800/90 shrink-0 p-4 sm:p-6 text-white group-hover:text-white transition-colors">
+                {service.icon}
+              </div>
+
+              {/* Middle Column: Title & Description */}
+              <div className="flex-1 py-6 sm:py-8 md:py-9 px-5 sm:px-8 md:px-10 flex flex-col justify-center">
+                <h3 className="font-bold uppercase text-white tracking-wide text-sm sm:text-base md:text-lg lg:text-xl">
+                  {service.title}
+                </h3>
+                <p className="text-neutral-400 text-xs sm:text-sm md:text-[15px] leading-relaxed mt-1.5 sm:mt-2 font-normal">
+                  {service.description}
+                </p>
+              </div>
+
+              {/* Right Column: Arrow */}
+              <div className="w-14 sm:w-20 md:w-24 flex items-center justify-center shrink-0 pr-2 sm:pr-4">
+                <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-neutral-400 group-hover:text-white group-hover:translate-x-1.5 transition-all duration-300 stroke-[1.5]" />
+              </div>
+            </div>
+          ))}
+        </div>
+      </FadeIn>
     </section>
   );
 };

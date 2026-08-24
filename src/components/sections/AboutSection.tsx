@@ -1,53 +1,152 @@
 
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowUpRight, ArrowDown } from 'lucide-react';
 import { FadeIn } from '../FadeIn';
-import { AnimatedText } from '../AnimatedText';
-import { ContactButton } from '../ContactButton';
+
+const titles = [
+  {
+    lines: [
+      "Building Solution",
+      "Through Code",
+      "And Creativity"
+    ]
+  },
+  {
+    lines: [
+      "A Developer Who",
+      "Turns Problems",
+      "Into Products"
+    ]
+  }
+];
+
+const features = [
+  {
+    num: "01",
+    title: "Clean Design"
+  },
+  {
+    num: "02",
+    title: "Fast Performance"
+  },
+  {
+    num: "03",
+    title: "Scalable Development"
+  },
+  {
+    num: "04",
+    title: "Client Satisfaction"
+  }
+];
 
 export const AboutSection = () => {
+  const [titleIndex, setTitleIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTitleIndex((prev) => (prev + 1) % titles.length);
+    }, 4600);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section id="about" className="min-h-screen relative flex flex-col items-center justify-center px-5 sm:px-8 md:px-10 py-20 overflow-hidden w-full">
-      
-      {/* Top Left - React */}
-      <FadeIn delay={0.1} x={-80} y={0} duration={0.9} className="absolute top-[4%] left-[1%] sm:left-[2%] md:left-[4%] w-[120px] sm:w-[160px] md:w-[210px] pointer-events-none z-0 opacity-80">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="React" className="w-full h-auto drop-shadow-[0_0_30px_rgba(97,218,251,0.4)]" />
-      </FadeIn>
-      
-      {/* Bottom Left - JS */}
-      <FadeIn delay={0.25} x={-80} y={0} duration={0.9} className="absolute bottom-[8%] left-[3%] sm:left-[6%] md:left-[10%] w-[100px] sm:w-[140px] md:w-[180px] pointer-events-none z-0 opacity-80">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg" alt="JavaScript" className="w-full h-auto drop-shadow-[0_0_30px_rgba(247,223,30,0.4)]" />
-      </FadeIn>
-
-      {/* Top Right - TS */}
-      <FadeIn delay={0.15} x={80} y={0} duration={0.9} className="absolute top-[4%] right-[1%] sm:right-[2%] md:right-[4%] w-[120px] sm:w-[160px] md:w-[210px] pointer-events-none z-0 opacity-80">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg" alt="TypeScript" className="w-full h-auto drop-shadow-[0_0_30px_rgba(49,120,198,0.4)]" />
+    <section 
+      id="about" 
+      className="bg-[#0C0C0C] z-10 relative px-5 sm:px-8 md:px-12 lg:px-16 pt-20 sm:pt-24 md:pt-32 pb-16 sm:pb-20 md:pb-24 w-full overflow-hidden"
+    >
+      {/* Top Page Heading */}
+      <FadeIn delay={0.1} y={40} className="w-full text-center mb-12 sm:mb-16 md:mb-24">
+        <h2 
+          className="hero-heading font-black uppercase leading-none tracking-tight select-none"
+          style={{ fontSize: 'clamp(3rem, 12vw, 160px)' }}
+        >
+          About me
+        </h2>
       </FadeIn>
 
-      {/* Bottom Right - HTML/CSS */}
-      <FadeIn delay={0.3} x={80} y={0} duration={0.9} className="absolute bottom-[8%] right-[3%] sm:right-[6%] md:right-[10%] w-[130px] sm:w-[170px] md:w-[220px] pointer-events-none z-0 opacity-80">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" alt="HTML5" className="w-full h-auto drop-shadow-[0_0_30px_rgba(227,79,38,0.4)]" />
-      </FadeIn>
-
-      <div className="flex flex-col items-center relative z-10 w-full max-w-4xl mx-auto text-center">
-        <FadeIn delay={0} y={40} className="w-full mb-10 sm:mb-14 md:mb-16">
-          <h2 
-            className="hero-heading font-black uppercase leading-none tracking-tight"
-            style={{ fontSize: 'clamp(3rem, 12vw, 160px)' }}
-          >
-            About me
-          </h2>
-        </FadeIn>
+      {/* Main 2-Column Content Grid */}
+      <div className="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-12 lg:gap-16 items-start">
         
-        <div className="text-[#D7E2EA] font-medium leading-relaxed max-w-[660px] mx-auto mb-16 sm:mb-20 md:mb-24 flex justify-center text-center">
-          <AnimatedText 
-            text="I create modern web experiences that combine clean design, smooth performance, and scalable development to help businesses stand out online." 
-            className="justify-center"
-            style={{ fontSize: 'clamp(1rem, 2vw, 1.35rem)' }}
-          />
-        </div>
+        {/* Left Column: Alternating Heading, 2-line Description & 2 CTAs */}
+        <FadeIn delay={0.2} y={30} className="lg:col-span-7 flex flex-col items-start text-left w-full pr-0 lg:pr-6">
+          {/* Animated Alternating Heading Container with CSS Grid stack to eliminate layout shift */}
+          <div className="w-full grid grid-cols-1 [grid-template-areas:'stack'] items-center overflow-hidden">
+            <AnimatePresence mode="wait">
+              <motion.h3 
+                key={titleIndex}
+                initial={{ opacity: 0, y: 28 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -28 }}
+                transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+                className="[grid-area:stack] text-white font-extrabold uppercase tracking-tight leading-[1.12] w-full text-left"
+                style={{ fontSize: 'clamp(1.5rem, 3.8vw, 2.75rem)' }}
+              >
+                {titles[titleIndex].lines.map((line, idx) => (
+                  <span key={idx} className="block">
+                    {line}
+                  </span>
+                ))}
+              </motion.h3>
+            </AnimatePresence>
+          </div>
 
-        <FadeIn delay={0.2} y={20}>
-          <ContactButton />
+          <p className="text-neutral-400 font-normal leading-relaxed text-sm sm:text-base md:text-lg mt-4 sm:mt-5 max-w-lg text-left">
+            I specialize in crafting high-performing, scalable digital experiences that seamlessly blend clean architecture with intuitive, engaging design.
+          </p>
+
+          {/* 2 CTA Buttons in Same Row on Mobile and Desktop */}
+          <div className="flex flex-row items-center justify-start gap-3.5 sm:gap-6 mt-7 sm:mt-9 pt-1 w-full max-w-full">
+            {/* CTA 1: Contact Me */}
+            <a
+              href="mailto:kasim@example.com"
+              className="group inline-flex items-center justify-center gap-1.5 sm:gap-2.5 px-4 sm:px-6 md:px-7 py-2.5 sm:py-3.5 rounded-xs bg-white text-[#0C0C0C] text-[11px] sm:text-xs md:text-sm font-bold uppercase tracking-wider transition-all duration-200 hover:bg-neutral-200 hover:scale-[1.02] active:scale-[0.98] cursor-pointer shadow-sm shrink-0 whitespace-nowrap"
+            >
+              <span>Contact Me</span>
+              <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#0C0C0C] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
+            </a>
+
+            {/* CTA 2: Download Resume */}
+            <a
+              href="/Kasim_Resume.pdf"
+              download="Kasim_Resume.pdf"
+              className="group inline-flex items-center justify-center gap-1.5 sm:gap-2 text-white text-[11px] sm:text-xs md:text-sm font-bold uppercase tracking-wider py-1 relative cursor-pointer shrink-0 whitespace-nowrap"
+            >
+              <span>Download Resume</span>
+              <ArrowDown className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white group-hover:translate-y-0.5 transition-transform duration-200" />
+              {/* Clean bottom underline */}
+              <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-white transition-all duration-200 group-hover:opacity-60"></span>
+            </a>
+          </div>
         </FadeIn>
+
+        {/* Right Column: Numbered Points with Dividers (Compact Width) */}
+        <FadeIn delay={0.3} y={30} className="lg:col-span-5 flex flex-col w-full max-w-md lg:max-w-[400px] lg:ml-auto mt-6 lg:mt-0">
+          <div className="flex flex-col w-full border-t border-neutral-800">
+            {features.map((item) => (
+              <div
+                key={item.num}
+                className="group flex items-center justify-between py-4 sm:py-5 md:py-6 border-b border-neutral-800 px-2 sm:px-3 transition-colors duration-200 hover:bg-white/[0.04]"
+              >
+                <div className="flex items-center gap-5 sm:gap-8 md:gap-10">
+                  {/* Number */}
+                  <span className="font-semibold text-sm sm:text-base md:text-lg text-neutral-400 group-hover:text-white tracking-tight w-6 select-none transition-colors">
+                    {item.num}
+                  </span>
+
+                  {/* Title */}
+                  <span className="font-medium text-sm sm:text-base md:text-lg text-white tracking-tight">
+                    {item.title}
+                  </span>
+                </div>
+
+                {/* Subtle Right Indicator on Hover */}
+                <div className="w-1.5 h-1.5 rounded-full bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-200 mr-1" />
+              </div>
+            ))}
+          </div>
+        </FadeIn>
+
       </div>
     </section>
   );

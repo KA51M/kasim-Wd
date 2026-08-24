@@ -441,7 +441,7 @@ export const HeroSection = () => {
 
           {/* Centered CTA Button on Mobile */}
           <div className="pointer-events-auto w-full flex justify-center pt-0.5">
-            <ContactButton href="#services" className="w-full max-w-[90vw]">
+            <ContactButton href="#projects" className="w-full max-w-[90vw]">
               Explore My Work
             </ContactButton>
           </div>
@@ -501,7 +501,7 @@ export const HeroSection = () => {
 
           {/* Right Side: Explore My Work CTA */}
           <FadeIn delay={1.2} y={20} className="pointer-events-auto flex justify-end">
-            <ContactButton href="#services">
+            <ContactButton href="#projects">
               Explore My Work
             </ContactButton>
           </FadeIn>
