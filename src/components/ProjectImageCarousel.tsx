@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { motion, AnimatePresence, type Variants } from 'framer-motion';
+import { motion, AnimatePresence, useInView, type Variants } from 'framer-motion';
 
 interface ProjectImageCarouselProps {
   images: string[];
@@ -51,6 +51,8 @@ export const ProjectImageCarousel = ({
   autoPlayInterval = 3500,
   initialDelay = 1500
 }: ProjectImageCarouselProps) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(containerRef, { amount: 0.2 });
   const [[page, direction], setPage] = useState<[number, number]>([0, 0]);
   const [isHovered, setIsHovered] = useState(false);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -69,9 +71,9 @@ export const ProjectImageCarousel = ({
     setPage(([prevPage]) => [prevPage + diff, dir]);
   };
 
-  // Continuous auto-play timer with staggered initial delay and pause on hover
+  // Continuous auto-play timer that ONLY starts when the carousel is in view
   useEffect(() => {
-    if (isHovered || images.length <= 1) return;
+    if (!isInView || isHovered || images.length <= 1) return;
 
     let intervalId: ReturnType<typeof setInterval> | null = null;
 
@@ -88,10 +90,11 @@ export const ProjectImageCarousel = ({
       if (intervalId) clearInterval(intervalId);
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [paginate, isHovered, autoPlayInterval, initialDelay, images.length]);
+  }, [isInView, paginate, isHovered, autoPlayInterval, initialDelay, images.length]);
 
   return (
     <div
+      ref={containerRef}
       className={`relative overflow-hidden bg-neutral-950 select-none group/carousel ${className}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
