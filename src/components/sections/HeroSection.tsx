@@ -355,8 +355,8 @@ export const HeroSection = () => {
         
         {/* MOBILE VIEW (< md) - Icons vertically aligned on left corner above description, description centered */}
         <div className="flex md:hidden flex-col items-center w-full relative gap-4 sm:gap-5">
-          {/* Vertical Social Icons on Left Corner above description with Startup Wave Rise Animation */}
-          <div className="absolute left-0 bottom-full mb-3 flex flex-col items-start gap-3 pointer-events-auto">
+          {/* Vertical Social Icons on Left Side above description with Startup Wave Rise Animation */}
+          <div className="absolute left-0 bottom-full mb-10 sm:mb-14 flex flex-col items-start gap-3.5 pointer-events-auto">
             {socialLinks.map((social, idx) => (
               <motion.div 
                 key={social.name} 
