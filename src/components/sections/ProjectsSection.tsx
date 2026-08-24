@@ -1,4 +1,3 @@
-import { ArrowRight } from 'lucide-react';
 import { FadeIn } from '../FadeIn';
 
 interface ServiceItem {
@@ -85,18 +84,13 @@ export const ProjectsSection = () => {
               </div>
 
               {/* Middle Column: Title & Description */}
-              <div className="flex-1 py-6 sm:py-8 md:py-9 px-5 sm:px-8 md:px-10 flex flex-col justify-center">
+              <div className="flex-1 py-6 sm:py-8 md:py-9 px-6 sm:px-9 md:px-12 flex flex-col justify-center">
                 <h3 className="font-bold uppercase text-white tracking-wide text-sm sm:text-base md:text-lg lg:text-xl">
                   {service.title}
                 </h3>
                 <p className="text-neutral-400 text-xs sm:text-sm md:text-[15px] leading-relaxed mt-1.5 sm:mt-2 font-normal">
                   {service.description}
                 </p>
-              </div>
-
-              {/* Right Column: Arrow */}
-              <div className="w-14 sm:w-20 md:w-24 flex items-center justify-center shrink-0 pr-2 sm:pr-4">
-                <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-neutral-400 group-hover:text-white group-hover:translate-x-1.5 transition-all duration-300 stroke-[1.5]" />
               </div>
             </div>
           ))}
