@@ -4,6 +4,7 @@ import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { Mail, X, ArrowUpRight } from 'lucide-react';
 import { FadeIn } from '../FadeIn';
 import { ContactButton } from '../ContactButton';
+import { KairoChatbot } from '../KairoChatbot';
 
 const TypingText = ({ text, delay = 0.5 }: { text: string; delay?: number }) => {
   const words = text.split(" ");
@@ -386,7 +387,7 @@ export const HeroSection = () => {
       {/* Bottom Content */}
       <div className="px-6 md:px-10 pb-7 sm:pb-8 md:pb-10 w-full z-30 relative pointer-events-none">
         
-        {/* MOBILE VIEW (< md) - Icons vertically aligned on left corner above description, description centered */}
+        {/* MOBILE VIEW (< md) - Icons vertically aligned on left corner, Chatbot on right corner above description */}
         <div className="flex md:hidden flex-col items-center w-full relative gap-4 sm:gap-5">
           {/* Vertical Social Icons on Left Side above description with Startup Wave Rise Animation */}
           <div className="absolute left-0 bottom-full mb-10 sm:mb-14 flex flex-col items-start gap-3.5 pointer-events-auto">
@@ -423,6 +424,11 @@ export const HeroSection = () => {
             ))}
           </div>
 
+          {/* Kairo Chatbot Logo on Right Side above description in Mobile View */}
+          <div className="absolute right-0 bottom-full mb-24 sm:mb-32 flex flex-col items-end pointer-events-auto z-40">
+            <KairoChatbot popupPosition="top-right" />
+          </div>
+
           {/* Centered Description Text */}
           <div className="pointer-events-auto text-center w-full max-w-[92vw]">
             <p 
@@ -447,7 +453,7 @@ export const HeroSection = () => {
           </div>
         </div>
 
-        {/* DESKTOP VIEW (>= md) - Left: description + horizontal icons, Right: CTA button */}
+        {/* DESKTOP VIEW (>= md) - Left: description + horizontal icons, Right: Kairo Chatbot + CTA button */}
         <div className="hidden md:flex md:flex-row justify-between items-end w-full">
           {/* Left Side: Description Text + 4 Social Icons Below */}
           <div className="pointer-events-auto text-left max-w-[320px] flex flex-col items-start">
@@ -499,12 +505,18 @@ export const HeroSection = () => {
             </div>
           </div>
 
-          {/* Right Side: Explore My Work CTA */}
-          <FadeIn delay={1.2} y={20} className="pointer-events-auto flex justify-end">
-            <ContactButton href="#projects">
-              Explore My Work
-            </ContactButton>
-          </FadeIn>
+          {/* Right Side: Kairo Chatbot Logo directly above Explore My Work CTA */}
+          <div className="pointer-events-auto flex flex-col items-end gap-10 md:gap-12 lg:gap-14 z-40">
+            <FadeIn delay={1.05} y={15} className="flex justify-end">
+              <KairoChatbot popupPosition="top-right" />
+            </FadeIn>
+
+            <FadeIn delay={1.2} y={20} className="flex justify-end">
+              <ContactButton href="#projects">
+                Explore My Work
+              </ContactButton>
+            </FadeIn>
+          </div>
         </div>
 
       </div>
